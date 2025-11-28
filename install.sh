@@ -17,13 +17,13 @@ menu() {
     echo "=========================================="
     read -p "Escolha uma opção: " OP
     case $OP in
-        1) configurar_usuario ;;
-        2) preparar_particoes ;;
-        3) instalar_base ;;
-        4) configurar_sistema ;;
-        5) instalar_hyprland ;;
-        6) tudo ;;
-        7) exit ;;
+        1) configurar_usuario; sleep 1; menu;;
+        2) preparar_particoes sleep 1; menu;;
+        3) instalar_base sleep 1; menu;;
+        4) configurar_sistema sleep 1; menu;;
+        5) instalar_hyprland sleep 1; menu ;;
+        6) tudo sleep 1; menu;;
+        7) exit sleep 1; menu;;
         *) echo "Opção inválida!"; sleep 1; menu ;;
     esac
 }
@@ -48,8 +48,7 @@ configurar_usuario() {
     fi
     export USUARIO SENHA SENHA_ROOT HOSTNAME
     echo "Usuário configurado!"
-    sleep 1
-    menu
+
 }
 
 preparar_particoes() {
@@ -65,7 +64,6 @@ preparar_particoes() {
     mount $BOOT /mnt/boot/efi
     echo "Partições montadas com sucesso!"
     read -p "Pressione ENTER para voltar ao menu"
-    menu
 }
 
 instalar_base() {
@@ -74,7 +72,6 @@ instalar_base() {
     genfstab -U /mnt > /mnt/etc/fstab
     echo "Base instalada com sucesso!"
     read -p "Pressione ENTER para voltar ao menu"
-    menu
 }
 
 configurar_sistema() {
@@ -103,7 +100,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 EOF
     echo "Configuração concluída!"
     read -p "Pressione ENTER para voltar ao menu"
-    menu
 }
 
 instalar_hyprland() {
@@ -146,7 +142,6 @@ EOF
 
     echo "Hyprland instalado e configurado!"
     read -p "Pressione ENTER para voltar ao menu"
-    menu
 }
 
 tudo() {
