@@ -126,7 +126,8 @@ pacman -S --noconfirm $GPU_DRIVER
 # Pacotes essenciais do Hyprland
 pacman -S --noconfirm hyprland firefox neovim git unzip base-devel 
 
-runuser -l $USUARIO -c "xdg-user-dirs-update"
+echo "$USUARIO"
+sudo -u $USUARIO xdg-user-dirs-update
 
 echo ">> Clonando dotfiles..."
 runuser -l $USUARIO -c "git clone $DOTFILES_REPO ~/dotfiles || true"
