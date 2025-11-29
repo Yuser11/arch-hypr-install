@@ -93,9 +93,10 @@ echo "$USUARIO:$SENHA" | chpasswd
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
 echo ">> Instalando bootloader (dual boot)..."
-grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=Arch
-os-prober
+grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+
+os-prober
 EOF
     echo "Configuração concluída!"
     read -p "Pressione ENTER para voltar ao menu"
