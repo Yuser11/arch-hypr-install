@@ -43,8 +43,7 @@ configurar_usuario() {
     read -p "Confirmar (s/n)? " CONF
     if [[ "$CONF" != "s" ]]; then
         echo "Cancelado."
-        sleep 1
-        menu
+
     fi
     export USUARIO SENHA SENHA_ROOT HOSTNAME
     echo "Usuário configurado!"
@@ -62,6 +61,7 @@ preparar_particoes() {
     mount $ROOT /mnt
     mkdir -p /mnt/boot/efi
     mount $BOOT /mnt/boot/efi
+    mount --mkdir /dev/$BOOT /mnt/boot
     echo "Partições montadas com sucesso!"
     read -p "Pressione ENTER para voltar ao menu"
 }
@@ -69,7 +69,7 @@ preparar_particoes() {
 instalar_base() {
     echo ">> Instalando sistema base..."
     pacstrap /mnt $PACOTES_BASE
-    genfstab -U /mnt > /mnt/etc/fstab
+    genfstab -U /mnt >> /mnt/etc/fstab
     echo "Base instalada com sucesso!"
     read -p "Pressione ENTER para voltar ao menu"
 }
