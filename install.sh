@@ -127,6 +127,7 @@ pacman -S --noconfirm $GPU_DRIVER
 pacman -S --noconfirm hyprland firefox neovim git unzip base-devel 
 
 echo "$USUARIO"
+sudo pacman -S xdg-user-dirs
 sudo -u $USUARIO xdg-user-dirs-update
 
 echo ">> Clonando dotfiles..."
