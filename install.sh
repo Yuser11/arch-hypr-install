@@ -61,7 +61,6 @@ preparar_particoes() {
     mount $ROOT /mnt
     mkdir -p /mnt/boot/efi
     mount $BOOT /mnt/boot/efi
-    mount --mkdir /dev/$BOOT /mnt/boot
     echo "Partições montadas com sucesso!"
     read -p "Pressione ENTER para voltar ao menu"
 }
